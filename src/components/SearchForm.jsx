@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserCardList from './UserCardList';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -15,24 +16,33 @@ class SearchForm extends Component {
         })
     }
 
-    _handleClick = async () => {
+    _handleSubmit = async (event) => {
+        event.preventDefault();
         const data = await fetch(`https://api.github.com/users/${this.state.username}`)
             .then(response => response.json());
         this.setState({
             userArray: [...this.state.userArray, data]
         })
+        console.log(data);
     }
 
     render() {
         return(
             <>
-                <form>
+                <form onSubmit={this._handleSubmit}>
                     <label>
-                        <input className="username" placeholder="Enter a Username" type="text" onChange={this._handleChange}></input>
+                        <input 
+                            name="username" 
+                            className="username" 
+                            placeholder="Enter a Username" 
+                            type="text" 
+                            onChange={(event) => 
+                                {this._handleChange(event.target.name, event.target.value)}}>
+                        </input>
                     </label>
-                    <button type="button" onClick={this._handleClick}>Submit</button>
+                    <button type="submit">Submit</button>
                 </form>
-                <userCardList />
+                {this.state.userArray.length ? <UserCardList userArray={this.state.userArray}/> : <p>No users to display...</p>}
             </>
         )
     }
