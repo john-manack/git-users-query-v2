@@ -18,3 +18,11 @@ body {
 li {
     list-style-type: none;
 }
+
+.user-card {
+    margin-top: 20px;
+}
+
+.user-card p {
+    margin: 1px;
+}

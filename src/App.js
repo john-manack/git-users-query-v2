@@ -1,14 +1,22 @@
 import SearchForm from './components/SearchForm';
+import { BrowserRouter as Router, Switch, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>GitHub User Query - V2</p>
-      </header>
-      <SearchForm />
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <p>GitHub User Query - V2</p>
+          <nav>
+            <Link to='/'>Home</Link>
+          </nav>
+        </header>
+      <Switch>
+        <SearchForm />
+      </Switch>
+      </div>
+    </Router>
   );
 }
 
