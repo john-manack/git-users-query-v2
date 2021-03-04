@@ -1,5 +1,6 @@
 import SearchForm from './components/SearchForm';
 import { BrowserRouter as Router, Switch, Link } from 'react-router-dom';
+import 'fontsource-roboto';
 import './App.css';
 
 function App() {
